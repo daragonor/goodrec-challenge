@@ -8,7 +8,7 @@
 import Foundation
 
 class BreedsViewModel: ObservableObject {
-    enum State { case initial, loaded(breeds: [Breed]), error(message: String) }
+    enum State: Equatable { case initial, loaded(breeds: [Breed]), error(message: String) }
     
     @Published
     var state: State

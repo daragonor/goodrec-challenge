@@ -6,9 +6,12 @@
 //
 
 import XCTest
+import Combine
 
 final class iOS_challengeTests: XCTestCase {
-
+    
+    var breedsViewModel = BreedsViewModel()
+    var cancellables = Set<AnyCancellable>()
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -17,12 +20,29 @@ final class iOS_challengeTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    @MainActor 
+    func testGetBreedsList() throws {
+        //Given
+        let expectedFirstValue = Breed(name: "Australian", subspecies: [])
+        let expect = expectation(description: "success")
+        breedsViewModel.$state
+            .dropFirst()     // << skip initial value !!
+            .sink { state in
+                expect.fulfill()
+            }
+            .store(in: &cancellables)
+        
+        //When
+        breedsViewModel.getListOfBreeds()
+        
+        //Then
+        waitForExpectations(timeout: 2)
+        switch breedsViewModel.state {
+        case .loaded(let breeds):
+            XCTAssertEqual(breeds.first?.name, expectedFirstValue.name)
+        default:
+            XCTFail()
+        }
     }
 
     func testPerformanceExample() throws {

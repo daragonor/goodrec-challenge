@@ -23,6 +23,12 @@
 		7CC065142C40FA2F0090EE16 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 7CC065132C40FA2F0090EE16 /* FirebaseDatabase */; };
 		7CC065162C411D450090EE16 /* DogAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC065152C411D450090EE16 /* DogAPIClient.swift */; };
 		7CC065182C411D850090EE16 /* BreedsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC065172C411D850090EE16 /* BreedsRepository.swift */; };
+		7CC0651F2C41DE960090EE16 /* FirebaseRTDClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9EB5A12C40E673005D8430 /* FirebaseRTDClient.swift */; };
+		7CC065202C41DE960090EE16 /* BreedsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC065172C411D850090EE16 /* BreedsRepository.swift */; };
+		7CC065212C41DE960090EE16 /* ImageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9EB59F2C40E629005D8430 /* ImageListViewModel.swift */; };
+		7CC065222C41DE960090EE16 /* BreedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9EB59D2C40E5F3005D8430 /* BreedsViewModel.swift */; };
+		7CC065232C41DE960090EE16 /* DogAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC065152C411D450090EE16 /* DogAPIClient.swift */; };
+		7CC065242C41DE960090EE16 /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9EB5A32C40E6A1005D8430 /* Breed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,6 +371,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C9EB57D2C40DF89005D8430 /* iOS_challengeTests.swift in Sources */,
+				7CC0651F2C41DE960090EE16 /* FirebaseRTDClient.swift in Sources */,
+				7CC065202C41DE960090EE16 /* BreedsRepository.swift in Sources */,
+				7CC065212C41DE960090EE16 /* ImageListViewModel.swift in Sources */,
+				7CC065222C41DE960090EE16 /* BreedsViewModel.swift in Sources */,
+				7CC065232C41DE960090EE16 /* DogAPIClient.swift in Sources */,
+				7CC065242C41DE960090EE16 /* Breed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
