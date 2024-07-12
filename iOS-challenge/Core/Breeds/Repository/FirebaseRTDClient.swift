@@ -8,11 +8,7 @@
 import Foundation
 import FirebaseDatabase
 
-protocol FirebaseRTDClientProtocol {
-    func requestBreedsList() async throws -> [Breed]
-}
-
-struct FirebaseRTDClient: FirebaseRTDClientProtocol {
+struct FirebaseRTDClient: BreedsListService {
     var ref: DatabaseReference? = Database.database().reference()
     
     func requestBreedsList() async throws -> [Breed] {

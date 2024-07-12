@@ -11,10 +11,11 @@ class BreedsViewModel: ObservableObject {
     enum State { case initial, loaded(breeds: [Breed]), error(message: String) }
     
     @Published
-    var state: State = .initial
+    var state: State
     var repository: BreedsRepositoryProtocol
     
     init(repository: BreedsRepositoryProtocol = BreedsRepository()) {
+        self.state = .initial
         self.repository = repository
     }
     
@@ -33,5 +34,10 @@ class BreedsViewModel: ObservableObject {
                 }
             }
         }
+    }
+
+    func changeClient(to client: Client) {
+        repository = BreedsRepository(client: client)
+        state = .initial
     }
 }

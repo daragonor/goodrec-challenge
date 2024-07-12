@@ -7,11 +7,6 @@
 
 import Foundation
 
-protocol DogAPIClientProtocol {
-    func requestBreedsList() async throws -> [Breed]
-    func requestImageList(breed: String, subspecie: String?) async throws -> [String]
-}
-
 enum ApiError: String, Error {
     case invalidURL = "Invalid URL"
     case invalidContentWrapper = "Invalid Content Wrapper"
@@ -19,7 +14,7 @@ enum ApiError: String, Error {
     var message: String { self.rawValue }
 }
 
-struct DogAPIClient: DogAPIClientProtocol {
+struct DogAPIClient: BreedsListService, ImageListService {
     enum Endpoint {
         case breedList
         case imageList(breed: String, subspecie: String?)
@@ -40,6 +35,7 @@ struct DogAPIClient: DogAPIClientProtocol {
             }
         }
     }
+    
     func requestBreedsList() async throws -> [Breed] {
         let url = try Endpoint.breedList.url
         let response: [String: Any] = try await requestFromAPI(with: url)

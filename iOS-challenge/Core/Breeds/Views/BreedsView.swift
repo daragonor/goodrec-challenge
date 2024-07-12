@@ -22,16 +22,16 @@ struct BreedsView: View {
                         viewModel.getListOfBreeds()
                     }
             case .loaded(let breeds):
-                breedList(list: breeds)
+                breedsList(list: breeds)
                     .navigationTitle("Breeds list")
-                    .navigationBarTitleDisplayMode(.automatic)
+                    .toolbar(content: breedsToolbar)
             case .error(message: let message):
                 Text(message)
             }
         }
     }
     
-    func breedList(list: [Breed]) -> some View {
+    func breedsList(list: [Breed]) -> some View {
         VStack {
             ScrollView {
                 LazyVGrid(columns: twoColumnGrid, content: {
@@ -56,6 +56,23 @@ struct BreedsView: View {
                 .padding()
             }
         }
+    }
+    
+    func breedsToolbar() -> some View {
+        Menu(content: {
+            Button(action: {
+                viewModel.changeClient(to: .FirebaseRTD)
+            }, label: {
+                Text("Firebase")
+            })
+            Button(action: {
+                viewModel.changeClient(to: .DogsAPI)
+            }, label: {
+                Text("DogsAPI")
+            })
+        }, label: {
+            Image(systemName: "server.rack")
+        })
     }
 }
 
