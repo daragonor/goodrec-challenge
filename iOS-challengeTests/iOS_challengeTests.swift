@@ -27,13 +27,17 @@ final class iOS_challengeTests: XCTestCase {
         let expectedFirstValue = Breed(name: "Australian", subspecies: [])
         let expect = expectation(description: "success")
         breedsViewModel.$state
-            .dropFirst()
             .sink { state in
-                expect.fulfill()
+                switch state {
+                case .loaded(_):
+                    expect.fulfill()
+                default: break
+                }
             }
             .store(in: &cancellables)
         
         //When
+        breedsViewModel.changeClient(to: .FirebaseRTD)
         breedsViewModel.getListOfBreeds()
         
         //Then
