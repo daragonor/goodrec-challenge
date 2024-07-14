@@ -11,21 +11,21 @@ enum ApiError: String, Error {
     case invalidURL = "Invalid URL"
     case invalidContentWrapper = "Invalid Content Wrapper"
     case invalidContent = "Invalid Content"
+    case request = "Request"
     var message: String { self.rawValue }
 }
 
-struct DogAPIClient: BreedsListService, ImageListService {
+class DogAPIClient: BreedsListService, ImageListService {
     enum Endpoint {
         case breedList
         case imageList(breed: String, subspecie: String?)
         private var urlString: String {
+            let base = "https://dog.ceo/api"
             switch self {
-            case .breedList: return "https://dog.ceo/api/breeds/list/all"
+            case .breedList: return base + "/breeds/list/all"
             case .imageList(let breed, let subspecie):
-                var elements = ["https://dog.ceo/api/breed", breed]
-                if let subspecie = subspecie { elements.append(subspecie) }
-                elements.append("images")
-                return elements.joined(separator: "/")
+                if let subspecie = subspecie { return base + "/breed/\(breed)/\(subspecie)/images" }
+                else { return base + "/breed/\(breed)/images" }
             }
         }
         var url: URL {
@@ -34,6 +34,12 @@ struct DogAPIClient: BreedsListService, ImageListService {
                 return url
             }
         }
+    }
+    
+    let urlSession: URLSession
+    
+    init(urlSession: URLSession = URLSession.shared) {
+      self.urlSession = urlSession
     }
     
     func requestBreedsList() async throws -> [Breed] {
@@ -51,9 +57,8 @@ struct DogAPIClient: BreedsListService, ImageListService {
     }
     
     private func requestFromAPI<T>(with url: URL) async throws -> T {
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        let (data, _) = try await URLSession.shared.data(for: request)
+        let request = URLRequest(url: url)
+        let (data, _) = try await urlSession.data(for: request)
         let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
         guard let response = json?["message"] as? T else { throw ApiError.invalidContentWrapper }
         return response

@@ -29,6 +29,8 @@
 		7CC065222C41DE960090EE16 /* BreedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9EB59D2C40E5F3005D8430 /* BreedsViewModel.swift */; };
 		7CC065232C41DE960090EE16 /* DogAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC065152C411D450090EE16 /* DogAPIClient.swift */; };
 		7CC065242C41DE960090EE16 /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9EB5A32C40E6A1005D8430 /* Breed.swift */; };
+		7CC41FF72C434525005664D9 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC41FF62C434525005664D9 /* MockURLProtocol.swift */; };
+		7CC41FFB2C435562005664D9 /* breedsFailContentWrapper.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CC41FFA2C435562005664D9 /* breedsFailContentWrapper.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		7C9EB5A52C40EA0F005D8430 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CC065152C411D450090EE16 /* DogAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogAPIClient.swift; sourceTree = "<group>"; };
 		7CC065172C411D850090EE16 /* BreedsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsRepository.swift; sourceTree = "<group>"; };
+		7CC41FF62C434525005664D9 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		7CC41FFA2C435562005664D9 /* breedsFailContentWrapper.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = breedsFailContentWrapper.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 		7C9EB57B2C40DF89005D8430 /* iOS-challengeTests */ = {
 			isa = PBXGroup;
 			children = (
+				7CC41FF52C43450C005664D9 /* Utils */,
 				7C9EB57C2C40DF89005D8430 /* iOS_challengeTests.swift */,
 			);
 			path = "iOS-challengeTests";
@@ -215,6 +220,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7CC41FF52C43450C005664D9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7CC41FF62C434525005664D9 /* MockURLProtocol.swift */,
+				7CC41FFA2C435562005664D9 /* breedsFailContentWrapper.json */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,6 +351,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC41FFB2C435562005664D9 /* breedsFailContentWrapper.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +392,7 @@
 				7CC065222C41DE960090EE16 /* BreedsViewModel.swift in Sources */,
 				7CC065232C41DE960090EE16 /* DogAPIClient.swift in Sources */,
 				7CC065242C41DE960090EE16 /* Breed.swift in Sources */,
+				7CC41FF72C434525005664D9 /* MockURLProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
