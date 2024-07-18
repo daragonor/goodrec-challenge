@@ -18,9 +18,6 @@ struct BreedsView: View {
             switch viewModel.state {
             case .initial:
                 ProgressView()
-                    .onAppear {
-                        viewModel.getListOfBreeds()
-                    }
             case .loaded(let breeds):
                 breedsList(list: breeds)
                     .navigationTitle("Breeds list")
@@ -28,6 +25,9 @@ struct BreedsView: View {
             case .error(message: let message):
                 Text(message)
             }
+        }
+        .task {
+            viewModel.getListOfBreeds()
         }
     }
     

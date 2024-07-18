@@ -18,7 +18,6 @@ class BreedsViewModel: ObservableObject {
         self.state = .initial
         self.repository = repository
     }
-    
     @MainActor
     func getListOfBreeds() {
         Task {
@@ -35,9 +34,11 @@ class BreedsViewModel: ObservableObject {
             }
         }
     }
-
+    
+    @MainActor
     func changeClient(to client: Client) {
-        repository = BreedsRepository(client: client)
         state = .initial
+        repository = BreedsRepository(client: client)
+        getListOfBreeds()
     }
 }

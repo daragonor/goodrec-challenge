@@ -19,7 +19,8 @@ struct FirebaseRTDClient: BreedsListService {
             return try response.map { element in
                 guard let value = element.value as? [String] else { throw ApiError.invalidContent }
                 return Breed(name: element.key.capitalized, subspecies: value.map(\.capitalized))
-            }.sorted(by: { left, right in left.name < right.name })
+            }
+            .sorted(by: { left, right in left.name < right.name })
         } catch {
             throw ApiError.invalidContent
         }
